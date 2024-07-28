@@ -14,26 +14,23 @@
             flex-direction: column;
             min-height: 100vh;
         }
-        .header, .footer {
-            background-color: #007BFF;
-            color: #fff;
-            text-align: center;
-            padding: 10px 0;
-        }
-        .header img {
-            width: 40px;
-            vertical-align: middle;
-        }
         .container {
             flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             padding: 20px;
+        }
+        .card-container {
+            width: 80%;
+            max-width: 1200px;
         }
         .card {
             background-color: #fff;
+            padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
-            padding: 20px;
         }
         .card img {
             width: 100%;
@@ -47,28 +44,47 @@
         .card p {
             color: #555;
         }
+        .header, .footer {
+            background-color: #007BFF;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
+        .header img {
+            width: 40px;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+        .header h1 {
+            display: inline;
+            font-size: 24px;
+            vertical-align: middle;
+        }
+        .footer p {
+            margin: 0;
+        }
     </style>
 </head>
 <body>
     <div class="header">
-        <!-- <img src="logo.png" alt="Logo"> -->
-        <span>CONTENT MANAGEMENT SYSTEM</span>
+        <!-- <img src="logo.png" alt="CMS Logo"> -->
+        <h1>CONTENT MANAGEMENT SYSTEM</h1>
     </div>
     <div class="container">
-        <!-- Example of a blog card -->
-        <div class="card">
-            <img src="image1.jpg" alt="Blog Image">
-            <h3>Blog Title 1</h3>
-            <h4>Subtitle 1</h4>
-            <p>Short description of the blog post. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+        <div class="card-container">
+            <!-- Example of a blog card -->
+            <div class="card">
+                <img src="image1.jpg" alt="Blog Image">
+                <h3>Blog Title 1</h3>
+                <p>Short description of the blog post. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+            </div>
+            <div class="card">
+                <img src="image2.jpg" alt="Blog Image">
+                <h3>Blog Title 2</h3>
+                <p>Short description of the blog post. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+            </div>
+            <!-- Add more blog cards as needed -->
         </div>
-        <div class="card">
-            <img src="image2.jpg" alt="Blog Image">
-            <h3>Blog Title 2</h3>
-            <h4>Subtitle 2</h4>
-            <p>Short description of the blog post. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
-        </div>
-        <!-- Add more blog cards as needed -->
     </div>
     <div class="footer">
         <p>&copy; 2024 CMS. All rights reserved.</p>
