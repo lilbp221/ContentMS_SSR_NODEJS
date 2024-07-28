@@ -1,4 +1,7 @@
 const app = require('express')()
+
+// const express= require('express')
+// const app=express()
 require('dotenv').config()
 
 app.set("view engine" , "ejs") //for  SSR
@@ -10,6 +13,10 @@ console.log( ' Running on port no http://localhost:3000/'+PORT)
 })
 
 app.get('/',function(req,res){
-      const page="Home";
-     res.render('home.ejs',{page:page})
+    
+     res.render('home.ejs')
+})
+
+app.get('/addblog',function(req,res){
+res.render('addBlog.ejs')
 })
