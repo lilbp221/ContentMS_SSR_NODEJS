@@ -6,6 +6,8 @@ const app=express()
 
 // const app = require('express')
 
+const{multer,storage,upload}= require('./middleware/multerConfig.js')
+
 
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
@@ -25,14 +27,18 @@ app.get('/addBlog',function(req,res){
 res.render('addBlog.ejs')
 })
 
-app.post('/addBlog',async function(req,res){
+app.post('/addBlog',upload.single('image'),async function(req,res){
       console.log("API HIT VAYO")
       console.log(req.body)
+      console.log(req.file)
+      
 const {title,subtitle,description}= req.body
     await  blogs.create({
             title:title,
             subTitle: subtitle,
            description: description,
+           imageUrl:req.file.filename
+
       })
 
       res.status(200).json({

@@ -12,6 +12,10 @@ module.exports = (sequelize, DataTypes) => { //(sequelize,DataTypes ) passed fro
       type: DataTypes.STRING,
       allowNull: false,
     },
+    imageUrl:{
+      type: DataTypes.STRING,
+      allowNull: true,
+    }
   });
   return Blog
 };
