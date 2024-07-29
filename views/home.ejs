@@ -22,8 +22,8 @@
             padding: 20px;
         }
         .card-container {
-            width: 80%;
-            max-width: 1200px;
+            width: 100%;
+            max-width: 80%;
         }
         .card {
             background-color: #fff;
@@ -31,6 +31,7 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
+            min-height: 300px;
         }
         .card img {
             width: 100%;
@@ -45,10 +46,16 @@
             color: #555;
         }
         .header, .footer {
-            background-color: #007BFF;
+            background: linear-gradient(45deg, #007BFF, #00C6FF);
             color: #fff;
             text-align: center;
-            padding: 10px 0;
+            padding: 15px 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         .header img {
             width: 40px;
@@ -59,35 +66,159 @@
             display: inline;
             font-size: 24px;
             vertical-align: middle;
+            margin: 0;
+        }
+        .header nav {
+            display: flex;
+            gap: 10px;
+        }
+        .header nav a {
+            text-decoration: none;
+        }
+        .header nav button {
+            background-color: #fff;
+            color: #007BFF;
+            border: none;
+            padding: 10px 20px;
+            font-size: 14px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s, transform 0.3s;
+        }
+        .header nav button:hover {
+            background-color: #0056b3;
+            color: #fff;
+            transform: scale(1.05);
         }
         .footer p {
             margin: 0;
+            font-size: 14px;
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        button {
+            background-color: #007BFF;
+            width: 100px;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 14px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s, transform 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+            color: #fff;
+            transform: scale(1.05);
+        }
+
+        /* Responsive styles */
+        @media (max-width: 600px) {
+            .header, .footer {
+                flex-direction: column;
+                text-align: center;
+                padding: 10px;
+            }
+            .header nav {
+                flex-direction: column;
+                gap: 5px;
+            }
+            .header nav button {
+                width: 100%;
+                padding: 10px;
+                margin-top: 10px;
+            }
+            .card-container {
+                max-width: 100%;
+                padding: 10px;
+            }
+            .card img {
+                height: auto;
+            }
+        }
+
+        @media (min-width: 601px) and (max-width: 1024px) {
+            .header, .footer {
+                flex-direction: column;
+                text-align: center;
+                padding: 15px;
+            }
+            .header nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .header nav button {
+                width: 100%;
+                padding: 10px;
+                margin-top: 10px;
+            }
+            .card-container {
+                max-width: 90%;
+                padding: 15px;
+            }
+        }
+
+        @media (min-width: 1025px) {
+            .header {
+                flex-direction: row;
+                text-align: left;
+            }
+            .header nav {
+                flex-direction: row;
+                gap: 10px;
+            }
+            .header nav button {
+                width: auto;
+                padding: 10px 20px;
+                margin-top: 0;
+            }
+            .card-container {
+                max-width: 80%;
+                padding: 20px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <!-- <img src="logo.png" alt="CMS Logo"> -->
+    <!-- <div class="header">
         <h1>CONTENT MANAGEMENT SYSTEM</h1>
-    </div>
+        <nav>
+            <a href="/"><button>Home</button></a>
+            <a href="addBlog"><button>Add Blog</button></a>
+        </nav>
+    </div> -->
+    <%- include('./header') %>
     <div class="container">
         <div class="card-container">
-            <!-- Example of a blog card -->
+            <!-- card1 -->
+           <% blogs.map((blog)=>{ %>
+           
+           <a href="blogs/<%- blog.id%>" >
             <div class="card">
-                <img src="image1.jpg" alt="Blog Image">
-                <h3>Blog Title 1</h3>
-                <p>Short description of the blog post. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+                <img style="height:200px; width:500px  ;" src="<%-blog.imageUrl%>" alt="Blog Image"/>
+                <h3>Title:<%-blog.title %></h3>
+                <h5>Subtitle:<%-blog.subTitle %></h5>
+                <p>Description:<%- blog.description %></p>
+
             </div>
-            <div class="card">
-                <img src="image2.jpg" alt="Blog Image">
-                <h3>Blog Title 2</h3>
-                <p>Short description of the blog post. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
-            </div>
-            <!-- Add more blog cards as needed -->
+           </a> 
+          <% }) %> 
+           
+            <!-- card1 -->
         </div>
     </div>
-    <div class="footer">
+    <%- include('./footer') %>
+    <!-- <div class="footer">
         <p>&copy; 2024 CMS. All rights reserved.</p>
-    </div>
+    </div> -->
 </body>
 </html>
