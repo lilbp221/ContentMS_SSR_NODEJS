@@ -1,14 +1,14 @@
 module.exports = (sequelize, DataTypes) => { //(sequelize,DataTypes ) passed from index.js for db
       const User = sequelize.define("user", { //table name is blog
-        userName: {
+        name: {
           type: DataTypes.STRING,
           allowNull: false,
         },
-        userPassword: {
+        password: {
           type: DataTypes.STRING,
           allowNull: false,
         },
-        userEmail: {
+        email: {
           type: DataTypes.STRING,
           allowNull: false,
         },
