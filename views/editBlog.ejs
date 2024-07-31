@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Blog</title>
+    <title>Edit Blog</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -50,14 +50,13 @@
             vertical-align: middle;
             margin: 0;
         }
-        .header nav {
-            display: flex;
+        .header span {
             gap: 10px;
         }
-        .header nav a {
+        .header span a {
             text-decoration: none;
         }
-        .header nav button {
+        .header span button {
             background-color: #fff;
             color: #007BFF;
             border: none;
@@ -67,7 +66,7 @@
             cursor: pointer;
             transition: background-color 0.3s, color 0.3s, transform 0.3s;
         }
-        .header nav button:hover {
+        .header span button:hover {
             background-color: #0056b3;
             color: #fff;
             transform: scale(1.05);
@@ -125,13 +124,13 @@
                 flex-direction: column;
                 text-align: center;
             }
-            .header nav {
+            .header span {
                 flex-direction: row;
                 flex-wrap: wrap;
                 justify-content: center;
                 gap: 5px;
             }
-            .header nav button {
+            .header span button {
                 width: auto;
                 padding: 10px;
                 margin-top: 10px;
@@ -157,7 +156,7 @@
             .card p {
                 font-size: 14px;
             }
-            .header nav {
+            .header span {
                 flex-direction: column;
                 gap: 5px;
             }

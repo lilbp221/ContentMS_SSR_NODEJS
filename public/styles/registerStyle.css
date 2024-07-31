@@ -6,90 +6,109 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-}
-.container {
+  }
+  
+  .container {
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-.form-container {
+  }
+  
+  .form-container {
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 300px;
-}
-.header, .footer {
-    background: linear-gradient(45deg, #007BFF, #00C6FF);
+  }
+  
+  .header, .footer {
+    background: linear-gradient(45deg, #007bff, #00c6ff);
     color: #fff;
     text-align: center;
     padding: 15px 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-.header {
+  }
+  
+  .header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-}
-.header img {
-    width: 40px;
-    vertical-align: middle;
-    margin-right: 10px;
-}
-.header h1 {
-    display: inline;
-    font-size: 24px;
-    vertical-align: middle;
-    margin: 0;
-}
-.header nav {
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .header .logo-container {
     display: flex;
+    align-items: center;
+  }
+  
+  .header img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+  }
+  
+  .header h1 {
+    font-size: 24px;
+    margin: 0;
+  }
+  
+  .header nav {
+    display: flex;
+    align-items: center;
     gap: 10px;
-}
-.header nav a {
+  }
+  
+  .header nav a {
     text-decoration: none;
-}
-.header nav button {
+  }
+  
+  .header nav button {
     background-color: #fff;
-    color: #007BFF;
+    color: #007bff;
     border: none;
     padding: 10px 20px;
     font-size: 14px;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s, transform 0.3s;
-}
-.header nav button:hover {
+  }
+  
+  .header nav button:hover {
     background-color: #0056b3;
     color: #fff;
     transform: scale(1.05);
-}
-.footer p {
+  }
+  
+  .footer p {
     margin: 0;
     font-size: 14px;
-}
-.form-container h2 {
+  }
+  
+  .form-container h2 {
     text-align: center;
     color: #333;
-}
-.form-container label {
+  }
+  
+  .form-container label {
     display: block;
     margin-bottom: 5px;
     color: #555;
-}
-.form-container input, .form-container textarea {
+  }
+  
+  .form-container input, .form-container textarea {
     width: 100%;
     padding: 8px;
     box-sizing: border-box;
     border: 1px solid #ddd;
     border-radius: 4px;
     margin-bottom: 15px;
-}
-.form-container button {
-    background-color: #007BFF;
+  }
+  
+  .form-container button {
+    background-color: #007bff;
     width: 100%;
-
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -97,61 +116,54 @@ body {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s, transform 0.3s;
-}
-.form-container button:hover {
+  }
+  
+  .form-container button:hover {
     background-color: #0056b3;
     color: #fff;
     transform: scale(1.05);
-}
-.logo-container {
-display: flex;
-align-items: center;
-}
-.logo {
-width: 50px;
-height: 50px;
-border-radius: 50%;
-margin-right: 10px;
-}
-@media (max-width: 768px) {
-    .header, .footer {
-        flex-direction: column;
-        text-align: center;
+  }
+  
+  .message {
+    color: blue;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+  
+  @media (max-width: 768px) {
+    .header {
+      flex-direction: column;
+      align-items: center;
     }
     .header nav {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 5px;
+      flex-direction: row;
+      justify-content: center;
+      gap: 5px;
     }
     .header nav button {
-        width: auto;
-        padding: 10px;
-        margin-top: 10px;
+      width: auto;
+      padding: 10px;
+      margin-top: 10px;
     }
-    .card-container {
-        max-width: 100%;
-    }
-}
-
-@media (max-width: 480px) {
+  }
+  
+  @media (max-width: 480px) {
     .header h1 {
-        font-size: 20px;
+      font-size: 20px;
     }
     .header img {
-        width: 30px;
+      width: 30px;
+      height: 30px;
     }
     .card {
-        padding: 15px;
+      padding: 15px;
     }
     .card h3 {
-        font-size: 18px;
+      font-size: 18px;
     }
     .card p {
-        font-size: 14px;
+      font-size: 14px;
     }
-    .header nav {
-        flex-direction: column;
-        gap: 5px;
-    }
-}
+  }
+  
