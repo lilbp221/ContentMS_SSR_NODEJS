@@ -1,0 +1,137 @@
+Set Up Middleware for Authentication Check:
+First, create a middleware function that checks if a user is authenticated. You can use sessions or JWT (JSON Web Tokens) for this purpose. For simplicity, I will use sessions here.
+
+
+===>>> // middleware/auth.js
+const authMiddleware = (req, res, next) => {
+  if (req.session && req.session.user) {
+    next(); // User is authenticated, proceed to the next middleware/route handler
+  } else {
+    res.redirect('/login'); // User is not authenticated, redirect to login page
+  }
+};
+module.exports = authMiddleware;
+
+
+
+Set Up Session Management:
+Ensure you have session management set up in your application. Install the necessary packages:
+===>>>bash
+npm install express-session
+Then configure session management in your app.js:
+
+
+===>>> app.js
+const express = require('express');
+const { blogs, users } = require('./model/index.js');
+const { createBlog, renderAllBlog, renderSingleBlog, deleteBlog, editBlog, editBlogRender, handleEditBlog } = require('./controller/blogController.js');
+const { handleLogin, handleRegister } = require('./controller/authController.js');
+
+
+const authMiddleware = require('./middleware/auth.js');
+const session = require('express-session'); 
+
+
+require('dotenv').config();
+
+const app = express();
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use(express.static('./uploads/'));
+app.use(express.static('./public/'));
+
+app.set('view engine', 'ejs');
+
+// Set up session management
+app.use(session({
+  secret:"s3cUr3$tr1ngTh@t1sRand0m&Un1qu3", //use your own secret ley
+  resave: false,
+  saveUninitialized: false,
+  cookie: { secure: false } // Set to true if using HTTPS
+}));
+
+// Routes
+
+// Public Routes
+app.get('/login', (req, res) => {
+  res.render('login.ejs', { message: ' ' });
+});
+
+app.post('/login', handleLogin);
+
+app.get('/register', (req, res) => {
+  res.render('register.ejs', { message: 'Please Register to Continue!' });
+});
+
+app.post('/register', handleRegister);
+
+// Protected Routes
+app.use(authMiddleware); // Apply the auth middleware to the routes below only
+
+app.get('/', renderAllBlog);
+app.post('/addBlog', upload.single('image'), createBlog);
+app.get('/addBlog', (req, res) => {
+  res.render('addBlog.ejs');
+});
+app.get('/blogs/:id', renderSingleBlog);
+app.get('/delete/:id', deleteBlog);
+app.get('/edit/:id', editBlogRender);
+app.post('/edit/:id', upload.single('image'), handleEditBlog);
+
+const PORT = process.env.PORT;
+app.listen(PORT, () => {
+  console.log(`Running on ${PORT} http://localhost:${PORT}/`);
+});
+Update Authentication Controller:
+Ensure your login controller sets the session correctly upon successful login:
+
+===>>>
+// controller/authController.js
+const bcrypt = require('bcrypt');
+const { users } = require('../model/index.js');
+
+const handleLogin = async (req, res) => {
+  const { username, password } = req.body;
+  const user = await users.findOne({ where: { username } });
+
+  if (user && bcrypt.compareSync(password, user.password)) {
+    req.session.user = user; // Set the session user
+    res.redirect('/'); // Redirect to home page after login
+  } else {
+    res.render('login.ejs', { message: 'Invalid username or password' });
+  }
+};
+
+const handleRegister = async (req, res) => {
+  const { username, password } = req.body;
+  const hashedPassword = bcrypt.hashSync(password, 10);
+  await users.create({ username, password: hashedPassword });
+  res.redirect('/login'); // Redirect to login page after registration
+};
+
+module.exports = {
+  handleLogin,
+  handleRegister
+};
+Explanation:
+Middleware (auth.js): This checks if the user is authenticated. If not, it redirects to the login page.
+Session Management: Sessions are set up in app.js using express-session. This keeps track of the user's login status.
+Routes: The authMiddleware is applied to routes that require authentication, ensuring only logged-in users can access them.
+Authentication Controller: The login controller sets the session upon successful login.
+By implementing this setup, you ensure that users must log in before accessing protected routes like the home page or any other sensitive parts of your application.
+
+
+===>> Destroy the session
+
+// Logout Route
+app.get('/logout', (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      return res.status(500).send('Error logging out.');
+    }
+    res.redirect('/login');
+  });
+  
+});

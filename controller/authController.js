@@ -27,6 +27,7 @@ exports.handleLogin=async function(req,res){
                   res.render('login.ejs',{message:"Invalid email or password"})
             }
             else{
+                  req.session.user = findUser; //setting session
                   res.redirect('/')
                   
 
