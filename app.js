@@ -21,7 +21,7 @@ require('dotenv').config()
 const fs= require('fs')
 const { users } = require('./model/index.js')
 const bcrypt = require('bcrypt')
-const { createBlog, renderAllBlog, renderSingleBlog, deleteBlog, editBlog, editBlogRender, handleEditBlog } = require('./controller/blogController.js')
+const { createBlog, renderAllBlog, renderSingleBlog, deleteBlog, editBlog, editBlogRender, handleEditBlog, renderLoginPage, renderRegisterPage, renderAddBlog } = require('./controller/blogController.js')
 const { handleLogin, handleRegister } = require('./controller/authController.js')
 
 app.set("view engine" , "ejs")//for  server side rendering asking node js to user ejs
@@ -37,14 +37,10 @@ app.use(session({
 //API's
 
 //render register page
-app.get("/register",function(req,res){
-  res.render('register.ejs',{message:" Please Register to Continue!"})
-  })
+app.get("/register",renderRegisterPage)
   
 //render login page
-  app.get("/login",function(req,res){
-        res.render('login.ejs',{message:" "})
-        })
+  app.get("/login",renderLoginPage)
   
 //register api
   app.post('/register',handleRegister)
@@ -53,7 +49,7 @@ app.get("/register",function(req,res){
   app.post('/login',handleLogin)
 
 
-// Protected Routes below
+// Protected Routes below =>>>>>>>>>>>>>>>>>>>>
 app.use(authMiddleware); // Apply the auth middleware to the routes below
 //create Blog API`
 app.post('/addBlog',upload.single('image'),createBlog)
@@ -62,9 +58,7 @@ app.post('/addBlog',upload.single('image'),createBlog)
 app.get('/',renderAllBlog)
   
 //Render addBlog.ejs
-app.get('/addBlog',function(req,res){
-  res.render('addBlog.ejs')
-  })
+app.get('/addBlog',renderAddBlog)
 
 //GET SINGLE BLOG API
 app.get('/blogs/:id',renderSingleBlog)

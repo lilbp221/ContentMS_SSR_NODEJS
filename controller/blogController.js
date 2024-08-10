@@ -116,3 +116,16 @@ exports.handleEditBlog=async function(req,res){
      })
      res.redirect('/')
 }
+
+exports.renderLoginPage=function(req,res){
+      res.render('login.ejs',{message:" "})
+      }
+
+
+exports.renderRegisterPage=function(req,res){
+      res.render('register.ejs',{message:" Please Register to Continue!"})
+      }
+
+exports.renderAddBlog=function(req,res){
+      res.render('addBlog.ejs')
+      }

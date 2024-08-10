@@ -123,7 +123,23 @@ body {
     color: #fff;
     transform: scale(1.05);
   }
-  
+  .password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-container input[type="password"],
+.password-container input[type="text"] {
+    width: 100%;
+    padding-right: 30px; /* space for the eye icon */
+}
+
+.toggle-password {
+    
+    cursor: pointer;
+    font-size: 18px;
+}
   .message {
     color: blue;
     text-align: center;

@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - Blog List</title>
-<style>body {
+<style>
+    body {
     font-family: Arial, sans-serif;
     background-color: #f9f9f9;
     margin: 0;
@@ -20,12 +21,14 @@
     justify-content: center;
     align-items: center;
     padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .card-container {
     width: 100%;
-    max-width: 80%;
-    margin: 0 auto;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .card {
@@ -34,13 +37,15 @@
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
-    min-height: 100px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .card img {
     width: 100%;
-    height: auto; /* Changed to auto for better responsiveness */
-    object-fit: cover; /* Ensure images cover the area */
+    height: 80vh; /* Cover 80% of viewport height */
+    object-fit: cover; /* Ensure the image covers the container */
     border-radius: 10px;
     margin-bottom: 10px;
 }
@@ -176,11 +181,15 @@ button:hover {
 
     .card-container {
         max-width: 100%;
-        padding: 10px;
+        padding: 0;
+    }
+
+    .card {
+        padding: 15px;
     }
 
     .card img {
-        height: auto; /* Ensures images maintain aspect ratio */
+        height: 80vh; /* Maintain 80% viewport height */
     }
 }
 
@@ -210,7 +219,12 @@ button:hover {
         flex-direction: column;
         gap: 5px;
     }
+
+    .card img {
+        height: 80vh; /* Maintain 80% viewport height */
+    }
 }
+
 </style>
 </head>
 <body>
@@ -221,6 +235,7 @@ button:hover {
             <a href="addBlog"><button>Add Blog</button></a>
         </nav>
     </div> -->
+   
     <%- include('./header') %>
     <div class="container">
         <div class="card-container">
@@ -232,10 +247,11 @@ button:hover {
                 <h5>Subtitle:<%-blog[0].subTitle %></h5>
                 <p>Description:<%- blog[0].description %></p>
 
+                <a href="/"><button>Back</button></a>
+                <a href="/edit/<%- blog[0].id%>"><button >Edit</button></a>
+                <a href="/delete/<%- blog[0].id%>"><button >Delete</button></a>
             </div>
-            <a href="/"><button>Home</button></a>
-            <a href="/edit/<%- blog[0].id%>"><button >Edit</button></a>
-            <a href="/delete/<%- blog[0].id%>"><button >Delete</button></a>
+            
            
             <!-- card1 -->
         </div>

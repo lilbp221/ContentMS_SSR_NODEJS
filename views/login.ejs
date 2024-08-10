@@ -39,6 +39,8 @@
           <div>
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required />
+            <span class="toggle-password" onclick="togglePassword()">👁️</span>
+
           </div>
 
           <div>
@@ -50,5 +52,18 @@
       </div>
     </div>
     <%- include('./footer') %>
+    <script>
+      function togglePassword() {
+          var passwordField = document.getElementById("password");
+          var eyeIcon = document.querySelector(".toggle-password");
+          if (passwordField.type === "password") {
+              passwordField.type = "text";
+              eyeIcon.textContent = "👁️"; // Change icon to closed eye
+          } else {
+              passwordField.type = "password";
+              eyeIcon.textContent = "👁️"; // Change icon to open eye
+          }
+      }
+  </script>
   </body>
 </html>

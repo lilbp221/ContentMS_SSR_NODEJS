@@ -7,7 +7,11 @@ body {
   flex-direction: column;
   min-height: 100vh;
 }
-
+.toggle-password {
+    
+  cursor: pointer;
+  font-size: 18px;
+}
 .container {
   flex: 1;
   display: flex;

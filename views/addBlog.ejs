@@ -164,7 +164,9 @@
     </style>
 </head>
 <body>
-    <%- include('./header') %>
+    <!-- importing header component -->
+     
+    <%- include('./header') %> 
     <div class="container">
         <div class="form-container">
             <h2>Add Blog</h2>
@@ -179,7 +181,7 @@
                 </div>
                 <div>
                     <label for="image">Image URL</label>
-                    <input type="file" id="image" name="image" required>
+                    <input type="file" id="image" name="image"   accept="image/png" required>
                 </div>
                 <div>
                     <label for="description">Description</label>
