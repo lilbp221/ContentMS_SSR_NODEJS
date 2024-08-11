@@ -50,12 +50,19 @@ db.blogs= require("./blogModel.js")(sequelize,DataTypes) //sending sequelize and
 db.users= require("./userModel.js")(sequelize,DataTypes) //sending sequelize and DataTypes to blogModel
 
 
+//RELATIONSHIPS in sequelize hasMany() has() belongsToMany() belongs()
+
+db.users.hasMany(db.blogs)
+db.blogs.belongsTo(db.users)
+
+
+
+
 db.sequelize.sync({force:false}).then(()=>{
       console.log("yes re-sync done")
 })
 
 //this method syncs all the defined model to database. {force:true} drops the table if already exists so we user false value
-
 module.exports=db;
 
 

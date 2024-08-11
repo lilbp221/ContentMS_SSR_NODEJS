@@ -18,21 +18,19 @@ app.use(express.static('./uploads/')) // to give access to image in uploads
 app.use(express.static('./public/'))
 //telling node to require and use .env file
 require('dotenv').config()
-const fs= require('fs')
-const { users } = require('./model/index.js')
-const bcrypt = require('bcrypt')
+
 const { createBlog, renderAllBlog, renderSingleBlog, deleteBlog, editBlog, editBlogRender, handleEditBlog, renderLoginPage, renderRegisterPage, renderAddBlog } = require('./controller/blogController.js')
 const { handleLogin, handleRegister } = require('./controller/authController.js')
 
 app.set("view engine" , "ejs")//for  server side rendering asking node js to user ejs
 
 // Set up session management
-app.use(session({
-  secret:"s3cUr3$tr1ngTh@t1sRand0m&Un1qu3", //better store in env file coz its secret
-  resave: false,
-  saveUninitialized: false,
-  cookie: { secure: false } // Set to true if using HTTPS
-}));
+// app.use(session({
+//   secret:"s3cUr3$tr1ngTh@t1sRand0m&Un1qu3", //better store in env file coz its secret
+//   resave: false,
+//   saveUninitialized: false,
+//   cookie: { secure: false } // Set to true if using HTTPS
+// }));
 
 //API's
 
@@ -50,7 +48,7 @@ app.get("/register",renderRegisterPage)
 
 
 // Protected Routes below =>>>>>>>>>>>>>>>>>>>>
-app.use(authMiddleware); // Apply the auth middleware to the routes below
+// app.use(authMiddleware); // Apply the auth middleware to the routes below
 //create Blog API`
 app.post('/addBlog',upload.single('image'),createBlog)
 
@@ -74,13 +72,9 @@ app.post('/edit/:id',upload.single('image'),handleEditBlog)
 
 // Logout Route
 app.get('/logout', (req, res) => {
-  req.session.destroy((err) => { //destryoing the session
-    if (err) {
-      return res.status(500).send('Error logging out.');
-    }
+ 
     res.redirect('/login');
   });
-});
 
 
 const PORT= process.env.PORT
