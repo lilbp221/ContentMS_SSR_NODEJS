@@ -82,14 +82,6 @@ app.listen(PORT,function(req,res){
 console.log( ' Running on' +PORT+'http://localhost:3000/')
 })
 
+//to clear git cache
 
-
-// var name= new Array()
-// name[1]="binod";
-// name[2]="bimal";
-// console.log(name[2])
-
-
-
-// const name=["binod","bimal"]
-// console.log(name[0])
+//git rm -r --cached (folder name)
