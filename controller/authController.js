@@ -61,8 +61,10 @@ exports.handleLogin=async function(req,res){
                   // req.session.user = findUser; //setting session
 
                   //generate token here using the sign(user id,secret key,option:expiry)
-                  const token= jwt.sign({id:findUser[0].id},process.env.SECRET_KEY,{
-                        expiresIn:"5m"
+                  const token= jwt.sign({id:findUser[0].id,
+                        hello:"hello"
+                  },process.env.SECRET_KEY,{
+                        expiresIn:"5D"
                   })
                   // expiresIn:"1d"
                   // console.log(token)

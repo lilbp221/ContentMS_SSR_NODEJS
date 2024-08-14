@@ -3,13 +3,16 @@ const fs= require('fs')
 
 //createBlog
 exports.createBlog=async function(req,res){
+     const userId= req.id
 const fileName=req.file.filename      
 const {title,subtitle,description}= req.body
     await  blogs.create({
             title:title,
             subTitle: subtitle,
            description: description,
-           imageUrl:fileName
+           imageUrl:fileName,
+           userId:userId
+
 
       })
       res.redirect("/");

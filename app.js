@@ -1,5 +1,6 @@
 const express= require('express')
 const app=express()
+const cookieParser= require('cookie-parser')
 
 const {  blogs } = require('./model/index.js')
 require('./model/index.js') //to use table read write update delete functions
@@ -13,6 +14,7 @@ const { where } = require('sequelize')
 
 app.use(express.json())
 app.use(express.urlencoded({extended: true})) //to parse urlencoded values from frontend forms
+app.use(cookieParser())
 
 app.use(express.static('./uploads/')) // to give access to image in uploads
 app.use(express.static('./public/'))
@@ -50,10 +52,10 @@ app.get("/register",renderRegisterPage)
 // Protected Routes below =>>>>>>>>>>>>>>>>>>>>
 // app.use(authMiddleware); // Apply the auth middleware to the routes below
 //create Blog API`
-app.post('/addBlog',upload.single('image'),createBlog)
+app.post('/addBlog',upload.single('image'),authMiddleware.isAuthenticated, createBlog)
 
 //GET ALL Blogs API 
-app.get('/',renderAllBlog)
+app.get('/',authMiddleware.isAuthenticated,renderAllBlog)
   
 //Render addBlog.ejs
 app.get('/addBlog',renderAddBlog)
@@ -85,3 +87,4 @@ console.log( ' Running on' +PORT+'http://localhost:3000/')
 //to clear git cache
 
 //git rm -r --cached (folder name)
+//git add . git commit git push
