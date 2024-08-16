@@ -1,4 +1,4 @@
-const { blogs } = require("../model")
+const { blogs, users } = require("../model")
 const fs= require('fs')
 
 //createBlog
@@ -26,8 +26,16 @@ const {title,subtitle,description}= req.body
 }
 
 exports.renderAllBlog=async function(req,res){
-      const allBlogs=await  blogs.findAll() //returns array values // finding all the data stored in table blogs
+      const allBlogs=await  blogs.findAll({
+            include:{
+                  model:users
+            }
+                  
+            
+      }) //returns array values // finding all the data stored in table blogs
        res.render('home.ejs',{blogs:allBlogs})
+
+       console.log(allBlogs)
   }
 
 exports.renderSingleBlog=async function (req,res){
@@ -38,6 +46,9 @@ exports.renderSingleBlog=async function (req,res){
             where:{
                   id:id,
                   // name:"Manish"
+            },
+            include:{
+                  model:users
             }
       })
 

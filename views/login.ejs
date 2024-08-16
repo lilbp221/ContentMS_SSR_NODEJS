@@ -28,7 +28,7 @@
       <div class="form-container">
         <h2>Login</h2>
 
-        <label class="message"><%- message%></label>
+        <label class="message"><%= message || "Please Login to Continue..." %></label>
 
         <form action="/login" method="POST">
           <div>

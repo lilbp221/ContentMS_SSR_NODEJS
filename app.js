@@ -55,19 +55,19 @@ app.get("/register",renderRegisterPage)
 app.post('/addBlog',upload.single('image'),authMiddleware.isAuthenticated, createBlog)
 
 //GET ALL Blogs API 
-app.get('/',authMiddleware.isAuthenticated,renderAllBlog)
+app.get('/' ,renderAllBlog)
   
 //Render addBlog.ejs
-app.get('/addBlog',renderAddBlog)
+app.get('/addBlog',authMiddleware.isAuthenticated,renderAddBlog)
 
 //GET SINGLE BLOG API
 app.get('/blogs/:id',renderSingleBlog)
 
 //delete blog
-  app.get("/delete/:id",deleteBlog)
+  app.get("/delete/:id",authMiddleware.isAuthenticated,deleteBlog)
 
 //edit blog form
-app.get('/edit/:id',editBlogRender)
+app.get('/edit/:id',authMiddleware.isAuthenticated,editBlogRender)
 
 //edit form bata aako post request handle garne
 app.post('/edit/:id',upload.single('image'),handleEditBlog)
@@ -81,7 +81,7 @@ app.get('/logout', (req, res) => {
 
 const PORT= process.env.PORT
 app.listen(PORT,function(req,res){
-console.log( ' Running on' +PORT+'http://localhost:3000/')
+console.log( ' Running on ' +PORT+' http://localhost:3000/')
 })
 
 //to clear git cache
